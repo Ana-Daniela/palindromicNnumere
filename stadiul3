@@ -1,0 +1,102 @@
+package numbers;
+import java.util.Scanner;
+
+public class Main {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Welcome to Amazing Numbers!");
+            System.out.println();
+            System.out.println("Supported requests:\n" +
+                                "- enter a natural number to know its properties;\n" +
+                                "- enter 0 to exit.");
+            long a;
+            do {
+                System.out.println();
+                System.out.println("Enter a request: ");
+                System.out.println();
+                a = scanner.nextLong();
+                if (a != 0) {
+                    if (a < 0) {
+                        System.out.println("The first parameter should be a natural number or zero.");
+                    } else if (a == 1) {
+                        System.out.println("Properties of 1\n" +
+                                            "Even: false\n" +
+                                            "Odd: true\n" +
+                                            "Buzz: False\n" +
+                                            "Duck: False\n" +
+                                            "Palindromic: True\n");
+                    } else {                        
+                        printProperties(a);
+                    }
+                } else {
+                    System.out.println("Goodbye!");
+                    break;  
+                }
+            } while (a != 0);
+        }
+        
+        public static void printProperties(long c) {
+            System.out.println("Properties of " + c);
+            System.out.println("Even: " + isEven(c));
+            System.out.println("Odd: " + isOdd(c));
+            System.out.println("Buzz: " + isBuzz(c));
+            System.out.println("Duck: " + isDuck(c));
+            System.out.println("Palindromic: " + isPalindrome(c));            
+        }
+        
+        public static boolean isEven(long d) {
+            if (d % 2 == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        
+        public static boolean isOdd(long d){
+            if (d % 2 == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        } 
+        
+        public static boolean isBuzz(long d){
+            if (d % 10 == 7 || d % 7 == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } 
+        
+        public static boolean isDuck(long d){
+            long c = 0;
+            long r;
+            while (d != 0) {
+                r = d %10;
+                if (r == 0) {
+                    c++;                    
+                } d = d / 10;
+            }
+            if (c > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } 
+        
+        public static boolean isPalindrome(long d) {
+             long r, temp; 
+             long sum = 0; 
+             temp = d;   
+            while (d > 0) {    
+                r = d % 10;  //getting remainder  
+                sum = (sum * 10) + r;    
+                d = d / 10;    
+            }    
+            if (temp == sum) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+}
